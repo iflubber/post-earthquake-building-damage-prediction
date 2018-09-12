@@ -1,0 +1,40 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red28\green33\blue38;\red245\green246\blue246;\red138\green146\blue151;
+\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c14510\c17255\c20000;\cssrgb\c96863\c97255\c97255;\cssrgb\c61176\c63922\c65882;
+\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\qc\partightenfactor0
+
+\f0\b\fs48 \cf2 \cb3 \expnd0\expndtw0\kerning0
+Machine Learning Challenge #6\
+\pard\pardeftab720\qr\partightenfactor0
+
+\b0\fs28 \cf4 \cb3 Jun 16, 2018, 09:00 AM IST - Aug 15, 2018, 11:55 AM IST\
+\
+\pard\pardeftab720\partightenfactor0
+
+\b \cf5 Approach: 
+\b0 \
+\
+\cf4 In order to predict the degree of damage / susceptibility of the buildings to an earthquake, the before and after data as well as the structural data of the buildings were key. I started my analysis with merging the building ownership data with the building structure data first, and then merging this merged building data with my training dataset as well as with the test dataset.\
+\
+Before beginning with the Exploratory Data Analysis (EDA), I identified the attributes which were categorical in nature. These features were converted to \'91factor\'92 type before proceeding with feature engineering. This was done on both training and test datasets. Next step was to look for missing values and \'91has_repair_started\'92 feature had most missing values. This feature seemed to be important. Hence, the missing values were treated through imputation. The summary descriptive analysis showed some outliers for the features \'91age_building\'92 and \'91plinth_area_sq_ft\'92, however, after running the initial model after outlier treatment, I realised there wasn\'92t much improvement, hence, I dropped the outlier treatment from my final model. Additionally, the correlation plot showed high correlation for a few of the features - height_ft_pre_eq & height_ft_post_eq with count_floors_pre_eq & count_floors_post_eq, which made sense. Hence, I dropped the former features and kept the latter. Also, I dropped the id like features before proceeding to modelling (namely building_id, ward_id.x, ward_id.y, vdcmun_id).\
+\
+Next I checked PCA to see if I can achieve any dimensionality reduction, however, noticed that I couldn\'92t get fewer attributes which would have explained the most of the variance in the data. Hence, I dropped the idea of using Principal Components for modeling.\
+\
+Moving on, I chose Random Forest to build my model. After trying a few iterations by varying the number of trees, playing with key features etc. I zeroed down on a final model with some key features basis the Gini index. The model achieved 87.85% accuracy on the training data, 25.33% OOB error and 95.4% AUC.\
+\
+
+\b \cf5 Tools/Libraries used:\
+
+\b0 R 3.5.0\
+R libraries: VIM, mice, mlr, dplyr, corrplot, dummies, factoextra, randomForest, pROC\cf4 \
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+}
